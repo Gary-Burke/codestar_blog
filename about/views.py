@@ -6,8 +6,6 @@ from .forms import CollaborateForm
 
 def about_me(request):
 
-    about = About.objects.all().order_by('-updated_on').first()
-
     if request.method == "POST":
         collaborate_form = CollaborateForm(data=request.POST)
         if collaborate_form.is_valid():
@@ -17,6 +15,8 @@ def about_me(request):
                 "Collaboration request received! I endeavor to respond "
                 "within 2 working days."
             )
+
+    about = About.objects.all().order_by('-updated_on').first()
 
     collaborate_form = CollaborateForm()
 
